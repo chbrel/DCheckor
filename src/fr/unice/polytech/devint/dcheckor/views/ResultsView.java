@@ -66,7 +66,7 @@ public class ResultsView extends CheckView {
 		buttons.add(nextButton);
 */
 		
-		JButton finishButton = new JButton("Finish");
+		JButton finishButton = new JButton("Quitter");
 		finishButton.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent arg0) {

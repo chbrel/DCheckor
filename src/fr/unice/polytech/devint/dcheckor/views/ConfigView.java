@@ -39,7 +39,7 @@ public class ConfigView extends CheckView {
 		cdYearPanel.setLayout(new BoxLayout(cdYearPanel, BoxLayout.Y_AXIS));
 		configPanel.add(cdYearPanel);
 		
-		JLabel cdYearLabel =  new JLabel("Année du CD:");
+		JLabel cdYearLabel =  new JLabel("Ann√©e du CD:");
 		cdYearPanel.add(cdYearLabel);
 		Calendar calendar =new GregorianCalendar();
 		calendar.setTime(new Date());
@@ -64,7 +64,7 @@ public class ConfigView extends CheckView {
 		buttons.setLayout(new BoxLayout(buttons, BoxLayout.X_AXIS));
 		actions.add(buttons, BorderLayout.EAST);
 		
-		JButton cancelButton = new JButton("Cancel");
+		JButton cancelButton = new JButton("Annuler");
 		cancelButton.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent arg0) {
@@ -75,7 +75,7 @@ public class ConfigView extends CheckView {
 		});
 		buttons.add(cancelButton);
 		
-		JButton nextButton = new JButton("Next");
+		JButton nextButton = new JButton("Suivant");
 		nextButton.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent arg0) {

@@ -1,6 +1,13 @@
 package fr.unice.polytech.devint.dcheckor.models;
 
 import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
+import org.jdom.Element;
+import org.jdom.JDOMException;
+import org.jdom.input.SAXBuilder;
 
 public class Checkor {
 
@@ -12,12 +19,12 @@ public class Checkor {
 		String results = "<html>";
 		
 		//Test presence jre folder et subfolders
-		results += "<h2>Vérification du dossier jre</h2><ul>";
+		results += "<h2>V√©rification du dossier jre</h2><ul>";
 		String jreFolderString = this.cdfolder + File.separator + "jre";
 		File jreFolder = new File (jreFolderString); 
 
     	if (jreFolder.exists() && jreFolder.isDirectory()) {
-    		results += "<li><span style=\"color:green\">Le répertoire jre existe.</span>";
+    		results += "<li><span style=\"color:green\">Le r√©pertoire jre existe.</span>";
     		
     		results += "<ul>";
     		//Test presence win jre folder
@@ -25,9 +32,9 @@ public class Checkor {
     		File winJreFolder = new File (winJreFolderString); 
 
         	if (winJreFolder.exists() && winJreFolder.isDirectory()) {
-        		results += "<li><span style=\"color:green\">Le sous-répertoire jre/win existe.</span></li>";
+        		results += "<li><span style=\"color:green\">Le sous-r√©pertoire jre/win existe.</span></li>";
         	} else {
-        		results += "<li><span style=\"color:red\">Le sous-répertoire jre/win n'existe pas.</span></li>";
+        		results += "<li><span style=\"color:red\">Le sous-r√©pertoire jre/win n'existe pas.</span></li>";
         	}
         	
         	//Test presence linux jre folder
@@ -35,9 +42,9 @@ public class Checkor {
     		File linuxJreFolder = new File (linuxJreFolderString); 
 
         	if (linuxJreFolder.exists() && linuxJreFolder.isDirectory()) {
-        		results += "<li><span style=\"color:green\">Le sous-répertoire jre/linux existe.</span></li>";
+        		results += "<li><span style=\"color:green\">Le sous-r√©pertoire jre/linux existe.</span></li>";
         	} else {
-        		results += "<li><span style=\"color:red\">Le sous-répertoire jre/linux n'existe pas.</span></li>";
+        		results += "<li><span style=\"color:red\">Le sous-r√©pertoire jre/linux n'existe pas.</span></li>";
         	}
         	
         	//Test presence mac jre folder
@@ -45,27 +52,27 @@ public class Checkor {
     		File macJreFolder = new File (macJreFolderString); 
 
         	if (macJreFolder.exists() && macJreFolder.isDirectory()) {
-        		results += "<li><span style=\"color:green\">Le sous-répertoire jre/mac existe.</span></li>";
+        		results += "<li><span style=\"color:green\">Le sous-r√©pertoire jre/mac existe.</span></li>";
         	} else {
-        		results += "<li><span style=\"color:red\">Le sous-répertoire jre/mac n'existe pas.</span></li>";
+        		results += "<li><span style=\"color:red\">Le sous-r√©pertoire jre/mac n'existe pas.</span></li>";
         	}
         	
         	results += "</ul>";
     		
     		results += "</li>";
     	} else {
-    		results += "<li><span style=\"color:red\">Le répertoire jre n'existe pas.</span></li>";
+    		results += "<li><span style=\"color:red\">Le r√©pertoire jre n'existe pas.</span></li>";
     	}
 
     	results += "</ul>";
 		
 		//Test presence lib folder et subfolders
-    	results += "<h2>Vérification du dossier lib</h2>\n<ul>\n";
+    	results += "<h2>V√©rification du dossier lib</h2>\n<ul>\n";
 		String libFolderString = this.cdfolder + File.separator + "lib";
 		File libFolder = new File (libFolderString); 
 
     	if (libFolder.exists() && libFolder.isDirectory()) {
-    		results += "<li><span style=\"color:green\">Le répertoire lib existe.</span>";
+    		results += "<li><span style=\"color:green\">Le r√©pertoire lib existe.</span>";
     		
     		results += "<ul>";
     		//Test presence win lib folder
@@ -73,9 +80,9 @@ public class Checkor {
     		File winLibFolder = new File (winLibFolderString); 
 
         	if (winLibFolder.exists() && winLibFolder.isDirectory()) {
-        		results += "<li><span style=\"color:green\">Le sous-répertoire lib/win existe.</span></li>";
+        		results += "<li><span style=\"color:green\">Le sous-r√©pertoire lib/win existe.</span></li>";
         	} else {
-        		results += "<li><span style=\"color:red\">Le sous-répertoire lib/win n'existe pas.</span></li>";
+        		results += "<li><span style=\"color:red\">Le sous-r√©pertoire lib/win n'existe pas.</span></li>";
         	}
         	
         	//Test presence linux lib folder
@@ -83,9 +90,9 @@ public class Checkor {
     		File linuxLibFolder = new File (linuxLibFolderString); 
 
         	if (linuxLibFolder.exists() && linuxLibFolder.isDirectory()) {
-        		results += "<li><span style=\"color:green\">Le sous-répertoire lib/linux existe.</span></li>";
+        		results += "<li><span style=\"color:green\">Le sous-r√©pertoire lib/linux existe.</span></li>";
         	} else {
-        		results += "<li><span style=\"color:red\">Le sous-répertoire lib/linux n'existe pas.</span></li>";
+        		results += "<li><span style=\"color:red\">Le sous-r√©pertoire lib/linux n'existe pas.</span></li>";
         	}
         	
         	//Test presence mac lib folder
@@ -93,53 +100,53 @@ public class Checkor {
     		File macLibFolder = new File (macLibFolderString); 
 
         	if (macLibFolder.exists() && macLibFolder.isDirectory()) {
-        		results += "<li><span style=\"color:green\">Le sous-répertoire lib/mac existe.</span></li>";
+        		results += "<li><span style=\"color:green\">Le sous-r√©pertoire lib/mac existe.</span></li>";
         	} else {
-        		results += "<li><span style=\"color:red\">Le sous-répertoire lib/mac n'existe pas.</span></li>";
+        		results += "<li><span style=\"color:red\">Le sous-r√©pertoire lib/mac n'existe pas.</span></li>";
         	}
         	
         	results += "</ul>";
     		
     		results += "</li>";
     	} else {
-    		results += "<li><span style=\"color:red\">Le répertoire lib n'existe pas.</span></li>";
+    		results += "<li><span style=\"color:red\">Le r√©pertoire lib n'existe pas.</span></li>";
     	}
 
     	results += "</ul>";
     	
 		//Test presence Listor folder
-    	results += "<h2>Vérification du dossier Listor</h2>\n<ul>\n";
+    	results += "<h2>V√©rification du dossier Listor</h2>\n<ul>\n";
 		String listorFolderString = this.cdfolder + File.separator + "Listor";
 		File listorFolder = new File (listorFolderString); 
 
     	if (listorFolder.exists() && listorFolder.isDirectory()) {
-    		results += "<li><span style=\"color:green\">Le répertoire Listor existe.</span></li>";
+    		results += "<li><span style=\"color:green\">Le r√©pertoire Listor existe.</span></li>";
     	} else {
-    		results += "<li><span style=\"color:red\">Le répertoire Listor n'existe pas.</span></li>";
+    		results += "<li><span style=\"color:red\">Le r√©pertoire Listor n'existe pas.</span></li>";
     	}
     	
     	results += "</ul>";
     	
 		//Test presence VocalyzeSIVOX folder
-    	results += "<h2>Vérification du dossier VocalyzeSIVOX</h2>\n<ul>\n";
+    	results += "<h2>V√©rification du dossier VocalyzeSIVOX</h2>\n<ul>\n";
 		String vocalyzeSIVOXFolderString = this.cdfolder + File.separator + "VocalyzeSIVOX";
 		File vocalyzeSIVOXFolder = new File (vocalyzeSIVOXFolderString); 
 
     	if (vocalyzeSIVOXFolder.exists() && vocalyzeSIVOXFolder.isDirectory()) {
-    		results += "<li><span style=\"color:green\">Le répertoire VocalyzeSIVOX existe.</span></li>";
+    		results += "<li><span style=\"color:green\">Le r√©pertoire VocalyzeSIVOX existe.</span></li>";
     	} else {
-    		results += "<li><span style=\"color:red\">Le répertoire VocalyzeSIVOX n'existe pas.</span></li>";
+    		results += "<li><span style=\"color:red\">Le r√©pertoire VocalyzeSIVOX n'existe pas.</span></li>";
     	}
     	
     	results += "</ul>";
     	
 		//Test presence LesLogiciels et test de structure de chaque projet
-    	results += "<h2>Vérification du dossier LesLogiciels</h2>\n<ul>\n";
+    	results += "<h2>VÔøΩrification du dossier LesLogiciels</h2>\n<ul>\n";
 		String gamesFolderString = this.cdfolder + File.separator + "LesLogiciels";
 		File gamesFolder = new File (gamesFolderString); 
 
     	if (gamesFolder.exists() && gamesFolder.isDirectory()) {
-    		results += "<li><span style=\"color:green\">Le répertoire LesLogiciels existe.</span>";
+    		results += "<li><span style=\"color:green\">Le r√©pertoire LesLogiciels existe.</span>";
     		
     		results += "<ul>";
     		
@@ -150,15 +157,15 @@ public class Checkor {
         		File game = new File(gameFolder); 
         		
         		if(game.exists() && game.isDirectory()) {
-        			results += "<li><span><b>Vérification pour le projet dont le dossier est: " + gamesList[i] + "</b></span>";
+        			results += "<li><span><b>V√©rification pour le projet dont le dossier est: " + gamesList[i] + "</b></span>";
         			results += "<ul>";
         			
-        			//Vérification dossier bin et execution.bat/.sh
+        			//VÔøΩrification dossier bin et execution.bat/.sh
         			String gameBinFolder = gameFolder + File.separator + "bin";
         			File gameBin = new File(gameBinFolder); 
             		
             		if(gameBin.exists() && gameBin.isDirectory()) {
-            			results += "<li><span style=\"color:green\">Le répertoire bin existe.</span>";
+            			results += "<li><span style=\"color:green\">Le r√©pertoire bin existe.</span>";
             			results += "<ul>";
             			
             			String gameBinExecBatFile = gameBinFolder + File.separator + "execution.bat";
@@ -182,7 +189,7 @@ public class Checkor {
             			results += "</ul>";
             			results += "</li>";
             		} else {
-            			results += "<li><span style=\"color:red\">Le répertoire bin n'existe pas.</span></li>";
+            			results += "<li><span style=\"color:red\">Le r√©pertoire bin n'existe pas.</span></li>";
             		}
             		
         			//Verification dossier src et compilation.bat/.sh
@@ -190,7 +197,7 @@ public class Checkor {
         			File gameSrc = new File(gameSrcFolder); 
             		
             		if(gameSrc.exists() && gameSrc.isDirectory()) {
-            			results += "<li><span style=\"color:green\">Le répertoire src existe.</span>";
+            			results += "<li><span style=\"color:green\">Le r√©pertoire src existe.</span>";
             			results += "<ul>";
             			
             			String gameSrcCompilBatFile = gameSrcFolder + File.separator + "compilation.bat";
@@ -214,7 +221,7 @@ public class Checkor {
             			results += "</ul>";
             			results += "</li>";
             		} else {
-            			results += "<li><span style=\"color:red\">Le répertoire src n'existe pas.</span></li>";
+            			results += "<li><span style=\"color:red\">Le r√©pertoire src n'existe pas.</span></li>";
             		}
             		
         			//Verification dossier doc et infos.xml
@@ -222,7 +229,7 @@ public class Checkor {
         			File gameDoc = new File(gameDocFolder); 
             		
             		if(gameDoc.exists() && gameDoc.isDirectory()) {
-            			results += "<li><span style=\"color:green\">Le répertoire doc existe.</span>";
+            			results += "<li><span style=\"color:green\">Le r√©pertoire doc existe.</span>";
             			results += "<ul>";
             			
             			String gameDocInfosFile = gameDocFolder + File.separator + "infos.xml";
@@ -230,6 +237,9 @@ public class Checkor {
             			
             			if(gameDocInfos.exists() && gameDocInfos.isFile()) {
             				results += "<li><span style=\"color:green\">Le fichier doc/infos.xml existe.</span></li>";
+            				
+            				results += "<ul>" + this.checkInfosXmlFile(gameDocInfos) + "</ul>";
+            				
             			} else {
             				results += "<li><span style=\"color:red\">Le fichier doc/infos.xml n'existe pas.</span></li>";
             			}
@@ -237,7 +247,7 @@ public class Checkor {
             			results += "</ul>";
             			results += "</li>";
             		} else {
-            			results += "<li><span style=\"color:red\">Le répertoire src n'existe pas.</span></li>";
+            			results += "<li><span style=\"color:red\">Le r√©pertoire src n'existe pas.</span></li>";
             		}
             		
         			
@@ -245,7 +255,7 @@ public class Checkor {
         			
         			results += "</li>";
         		} else {
-        			results += "<li><span style=\"color:red\">Un fichier supplémentaire s'est glissé dans le répertoire LesLogciels: " + gameFolder + "</span></li>";
+        			results += "<li><span style=\"color:red\">Un fichier suppl√©mentaire s'est gliss√© dans le r√©pertoire LesLogciels: " + gameFolder + "</span></li>";
         		}
         	}
         	
@@ -253,7 +263,7 @@ public class Checkor {
     		
     		results += "</li>";
     	} else {
-    		results += "<li><span style=\"color:red;\">Le répertoire LesLogiciels n'existe pas.</span></li>";
+    		results += "<li><span style=\"color:red;\">Le r√©pertoire LesLogiciels n'existe pas.</span></li>";
     	}
 
     	results += "</ul>";
@@ -261,6 +271,115 @@ public class Checkor {
 		results += "</html>";
 		
 		return results;
+	}
+	
+	public String checkInfosXmlFile(File infosFile) {
+		boolean ok = true;
+		String mistakes = "";
+		SAXBuilder builder = new SAXBuilder();
+        try {
+            Element xmlRoot = builder.build(infosFile).getRootElement();
+
+            String year = xmlRoot.getChildText("year");
+            
+            if(year == null) {
+            	ok = false;
+            	mistakes += "<li><span style=\"color:red\">Il ne contient pas d'informations sur l'ann√©e (noeud 'year').</span></li>";
+            }
+
+            Element gameCategories = xmlRoot.getChild("gamecategories");
+            
+            if(gameCategories == null) {
+            	ok = false;
+            	mistakes += "<li><span style=\"color:red\">Il ne contient pas d'informations sur les cat√©gories de jeu (noeud 'gamecategories').</span></li>";
+            }
+            
+            
+            List categories = gameCategories.getChildren("gamecategory");
+            if(categories == null || categories.size() == 0) {
+            	ok = false;
+            	mistakes += "<li><span style=\"color:red\">Aucune cat√©gorie de jeu n'est d√©crit (noeud 'gamecategory' sous-noeud de 'gamecategories').</span></li>";
+            }
+
+            String shortDescription = xmlRoot.getChildText("shortdescription");
+            
+            if(shortDescription == null) {
+            	ok = false;
+            	mistakes += "<li><span style=\"color:red\">Il ne contient pas de r√©sum√© (noeud 'shortdescription').</span></li>";
+            }
+            
+            String publicString = xmlRoot.getChildText("public");
+            
+            if(publicString == null) {
+            	ok = false;
+            	mistakes += "<li><span style=\"color:red\">Il ne contient pas d'informations sur le type de public vis√© par ce jeu (noeud 'public').</span></li>";
+            }
+
+            String age = xmlRoot.getChildText("age");
+            
+            if(age == null) {
+            	ok = false;
+            	mistakes += "<li><span style=\"color:red\">Il ne contient pas d'informations sur l'age du public vis√© par ce jeu (noeud 'age').</span></li>";
+            }
+            
+            String title = xmlRoot.getChildText("title");
+
+            if(title == null) {
+            	ok = false;
+            	mistakes += "<li><span style=\"color:red\">Il ne contient pas de titre (noeud 'title').</span></li>";
+            }
+            
+            Element authorsElem = xmlRoot.getChild("authors");
+            
+            if(authorsElem == null) {
+            	ok = false;
+            	mistakes += "<li><span style=\"color:red\">Il ne contient pas d'informations sur les auteurs du jeu (noeud 'authors').</span></li>";
+            }
+
+            List authors = authorsElem.getChildren("author");
+            if(authors == null || authors.size() == 0) {
+            	ok = false;
+            	mistakes += "<li><span style=\"color:red\">Aucun auteur n'est enregistr√© pour ce jeu (noeud 'author' sous-noeud de 'authors').</span></li>";
+            }
+            
+            Element notesElem = xmlRoot.getChild("notes");
+            
+            if(notesElem == null) {
+            	ok = false;
+            	mistakes += "<li><span style=\"color:red\">Il ne contient pas d'informations sur les notes du jeu (noeud 'notes').</span></li>";
+            }
+
+            List notes = notesElem.getChildren("note");
+            if(notes == null || notes.size() == 0) {
+            	ok = false;
+            	mistakes += "<li><span style=\"color:#ED7F10\">Non Obligatoire: Aucune note n'est enregistr√© pour ce jeu (noeud 'note' sous-noeud de 'notes').</span></li>";
+            }
+
+            String gameplay = xmlRoot.getChildText("gameplay");
+            
+            if(gameplay == null) {
+            	ok = false;
+            	mistakes += "<li><span style=\"color:red\">Il ne contient pas d'informations sur les commandes du jeu (noeud 'gameplay').</span></li>";
+            }
+
+            String gamerules = xmlRoot.getChildText("gamerules");
+            
+            if(gamerules == null) {
+            	ok = false;
+            	mistakes += "<li><span style=\"color:red\">Il ne contient pas d'informations sur les r√®gles du jeu (noeud 'gamerules').</span></li>";
+            }
+            
+            if(ok) {
+            	return "<li><span style=\"color:green\">Il ne manque aucune information sur ce jeu dans le fichier infos.xml.</span></li>";
+            } else {
+            	return mistakes;
+            }
+
+        } catch (JDOMException e) {
+            return mistakes + "<li><span style=\"color:red\">Une erreur s'est produite pendant la lecture du fichier XML (pb de structure de fichier).</span></li>";
+        } catch (IOException e) {
+        	return mistakes + "<li><span style=\"color:red\">Une erreur s'est produite pendant la lecture du fichier XML (pb de lecture et non de structure du fichier).</span></li>";
+        }
 	}
 	
 	public void setCDYear(int year) {

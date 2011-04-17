@@ -1,6 +1,7 @@
 package fr.unice.polytech.devint.dcheckor.controllers;
 
 import java.awt.Dimension;
+import java.io.File;
 import java.util.ArrayList;
 
 import javax.swing.JFrame;
@@ -9,6 +10,7 @@ import fr.unice.polytech.devint.dcheckor.models.Checkor;
 import fr.unice.polytech.devint.dcheckor.views.ConfigView;
 import fr.unice.polytech.devint.dcheckor.views.ResultsView;
 import fr.unice.polytech.devint.dcheckor.views.WelcomeView;
+import fr.unice.polytech.devint.dcheckor.models.FileUtils;
 
 public class CheckController extends JFrame {
 
@@ -35,7 +37,7 @@ public class CheckController extends JFrame {
 	}
 	
 	public void init() {
-		this.setTitle("Welcome to CDDeViNT DInstallor!");
+		this.setTitle("DCheckor!");
 		this.setContentPane(this.wv);
 		
 		Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
@@ -80,7 +82,21 @@ public class CheckController extends JFrame {
 	private void checkProcess() {
 		this.checkor.setCDYear(this.cdyear);
 		this.checkor.setCDFolder(this.cdfolder);
-		this.rv.setResult(this.checkor.check());
+		
+		File cdFolderFile = new File(this.cdfolder);
+		if(!cdFolderFile.exists()) {
+			this.rv.setResult("<html><h1 style=\"color:red;\">Le dossier donné en entrée n'existe pas!!!</h1></html>");
+		} else {
+		
+			File resourcesFile = new File(this.cdfolder + File.separator + "resources" + File.separator);
+			if(!resourcesFile.exists()) {
+				resourcesFile.mkdirs();
+			}
+			
+			FileUtils.write(this.cdfolder + File.separator + "resources" + File.separator + "year.txt" , String.valueOf(this.cdyear), false);
+			
+			this.rv.setResult(this.checkor.check());
+		}
 	}
 	
 	public void cancel() {

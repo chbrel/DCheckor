@@ -1,9 +1,12 @@
 package fr.unice.polytech.devint.dcheckor.views;
 
 import java.awt.BorderLayout;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 
+import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -11,6 +14,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import fr.unice.polytech.devint.dcheckor.controllers.CheckController;
+import fr.unice.polytech.devint.dcheckor.models.Picture;
 
 public class WelcomeView extends CheckView {
 
@@ -19,8 +23,27 @@ public class WelcomeView extends CheckView {
 		
 		this.setLayout(new BorderLayout());
 		
-		JLabel title = new JLabel("Welcome On Board! Let's go for CD DeViNT checking!");
-		this.add(title, BorderLayout.NORTH);
+		JPanel headPanel = new JPanel();
+		headPanel.setLayout(new BorderLayout());
+		
+		headPanel.add((new Picture("." + File.separator + "resources" + File.separator + "header.png")).getJLabel(), BorderLayout.NORTH);
+		
+		JPanel titlePanel = new JPanel();
+		titlePanel.setLayout(new BoxLayout(titlePanel, BoxLayout.X_AXIS));
+		
+		titlePanel.add(Box.createHorizontalGlue());
+		
+		JLabel title = new JLabel("Bienvenue dans le programme de vérification du CD DeViNT!");
+		title.setFont(title.getFont().deriveFont(Font.BOLD));
+		title.setFont(title.getFont().deriveFont(Float.parseFloat("25")));
+		titlePanel.add(title);
+		
+		titlePanel.add(Box.createHorizontalGlue());
+		
+		
+		headPanel.add(titlePanel, BorderLayout.CENTER);
+		
+		this.add(headPanel, BorderLayout.NORTH);
 		
 		JLabel welcomeContent = new JLabel("Welcome content!");
 		this.add(welcomeContent, BorderLayout.CENTER);
@@ -33,7 +56,7 @@ public class WelcomeView extends CheckView {
 		buttons.setLayout(new BoxLayout(buttons, BoxLayout.X_AXIS));
 		actions.add(buttons, BorderLayout.EAST);
 		
-		JButton cancelButton = new JButton("Cancel");
+		JButton cancelButton = new JButton("Annuler");
 		cancelButton.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent arg0) {
@@ -44,7 +67,7 @@ public class WelcomeView extends CheckView {
 		});
 		buttons.add(cancelButton);
 		
-		JButton nextButton = new JButton("Next");
+		JButton nextButton = new JButton("Suivant");
 		nextButton.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent arg0) {
