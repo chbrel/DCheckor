@@ -127,6 +127,19 @@ public class Checkor {
     	
     	results += "</ul>";
     	
+    	//Test presence DListor folder
+    	results += "<h2>Vérification du dossier DListor</h2>\n<ul>\n";
+		String dlistorFolderString = this.cdfolder + File.separator + "DListor";
+		File dlistorFolder = new File (dlistorFolderString); 
+
+    	if (dlistorFolder.exists() && dlistorFolder.isDirectory()) {
+    		results += "<li><span style=\"color:green\">Le répertoire DListor existe.</span></li>";
+    	} else {
+    		results += "<li><span style=\"color:red\">Le répertoire DListor n'existe pas.</span></li>";
+    	}
+    	
+    	results += "</ul>";
+    	
 		//Test presence VocalyzeSIVOX folder
     	results += "<h2>Vérification du dossier VocalyzeSIVOX</h2>\n<ul>\n";
 		String vocalyzeSIVOXFolderString = this.cdfolder + File.separator + "VocalyzeSIVOX";
@@ -141,7 +154,7 @@ public class Checkor {
     	results += "</ul>";
     	
 		//Test presence LesLogiciels et test de structure de chaque projet
-    	results += "<h2>V�rification du dossier LesLogiciels</h2>\n<ul>\n";
+    	results += "<h2>Vérification du dossier LesLogiciels</h2>\n<ul>\n";
 		String gamesFolderString = this.cdfolder + File.separator + "LesLogiciels";
 		File gamesFolder = new File (gamesFolderString); 
 
@@ -160,7 +173,7 @@ public class Checkor {
         			results += "<li><span><b>Vérification pour le projet dont le dossier est: " + gamesList[i] + "</b></span>";
         			results += "<ul>";
         			
-        			//V�rification dossier bin et execution.bat/.sh
+        			//Vérification dossier bin et execution.bat/.sh
         			String gameBinFolder = gameFolder + File.separator + "bin";
         			File gameBin = new File(gameBinFolder); 
             		
@@ -206,7 +219,7 @@ public class Checkor {
             			if(gameSrcCompilBat.exists() && gameSrcCompilBat.isFile()) {
             				results += "<li><span style=\"color:green\">Le fichier src/compilation.bat existe.</span></li>";
             			} else {
-            				results += "<li><span style=\"color:red\">Le fichier src/execution.bat n'existe pas.</span></li>";
+            				results += "<li><span style=\"color:red\">Le fichier src/compilation.bat n'existe pas.</span></li>";
             			}
             			
             			String gameSrcCompilShFile = gameSrcFolder + File.separator + "compilation.sh";
