@@ -115,17 +115,17 @@ public class Checkor {
     	results += "</ul>";
     	
 		//Test presence Listor folder
-    	results += "<h2>Vérification du dossier Listor</h2>\n<ul>\n";
-		String listorFolderString = this.cdfolder + File.separator + "Listor";
-		File listorFolder = new File (listorFolderString); 
-
-    	if (listorFolder.exists() && listorFolder.isDirectory()) {
-    		results += "<li><span style=\"color:green\">Le répertoire Listor existe.</span></li>";
-    	} else {
-    		results += "<li><span style=\"color:red\">Le répertoire Listor n'existe pas.</span></li>";
-    	}
-    	
-    	results += "</ul>";
+//    	results += "<h2>Vérification du dossier Listor</h2>\n<ul>\n";
+//		String listorFolderString = this.cdfolder + File.separator + "Listor";
+//		File listorFolder = new File (listorFolderString); 
+//
+//    	if (listorFolder.exists() && listorFolder.isDirectory()) {
+//    		results += "<li><span style=\"color:green\">Le répertoire Listor existe.</span></li>";
+//    	} else {
+//    		results += "<li><span style=\"color:red\">Le répertoire Listor n'existe pas.</span></li>";
+//    	}
+//    	
+//    	results += "</ul>";
     	
     	//Test presence DListor folder
     	results += "<h2>Vérification du dossier DListor</h2>\n<ul>\n";
@@ -326,6 +326,13 @@ public class Checkor {
             if(publicString == null) {
             	ok = false;
             	mistakes += "<li><span style=\"color:red\">Il ne contient pas d'informations sur le type de public visé par ce jeu (noeud 'public').</span></li>";
+            }
+            
+            String gameStateString = xmlRoot.getChildText("gamestate");
+            
+            if(gameStateString == null) {
+            	ok = false;
+            	mistakes += "<li><span style=\"color:red\">Il ne contient pas d'informations sur l'état d'avancement de ce jeu (noeud 'gamestate').</span></li>";
             }
 
             String age = xmlRoot.getChildText("age");
