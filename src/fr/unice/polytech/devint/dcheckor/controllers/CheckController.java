@@ -8,6 +8,7 @@ import javax.swing.JFrame;
 
 import fr.unice.polytech.devint.dcheckor.models.Checkor;
 import fr.unice.polytech.devint.dcheckor.views.ConfigView;
+import fr.unice.polytech.devint.dcheckor.views.GenerateView;
 import fr.unice.polytech.devint.dcheckor.views.ResultsView;
 import fr.unice.polytech.devint.dcheckor.views.WelcomeView;
 import fr.unice.polytech.devint.dcheckor.models.FileUtils;
@@ -19,6 +20,7 @@ public class CheckController extends JFrame {
 	private WelcomeView wv;
 	private ConfigView cv;
 	private ResultsView rv;
+	private GenerateView gv;
 	
 	private int cdyear;
 	private String cdfolder;
@@ -32,6 +34,7 @@ public class CheckController extends JFrame {
 		this.wv = new WelcomeView(this);
 		this.cv = new ConfigView(this);
 		this.rv = new ResultsView(this);
+		this.gv = new GenerateView(this);
 		
 		this.init();
 	}
@@ -64,9 +67,17 @@ public class CheckController extends JFrame {
 			if(this.getContentPane().equals(this.cv)) {
 				checkProcess();
 				
-				this.setTitle("Results Pane");
+				this.setTitle("Check Results Pane");
 				this.setContentPane(this.rv);
 				this.pack();
+			} else {
+				if(this.getContentPane().equals(this.rv)) {
+					generateProcess();
+					
+					this.setTitle("Generate Results Pane");
+					this.setContentPane(this.gv);
+					this.pack();
+				}
 			}
 		}
 	}
@@ -97,6 +108,13 @@ public class CheckController extends JFrame {
 			
 			this.rv.setResult(this.checkor.check());
 		}
+	}
+	
+	private void generateProcess() {
+		this.checkor.setCDYear(this.cdyear);
+		this.checkor.setCDFolder(this.cdfolder);
+
+		this.gv.setResult(this.checkor.generateZipVersion());
 	}
 	
 	public void cancel() {

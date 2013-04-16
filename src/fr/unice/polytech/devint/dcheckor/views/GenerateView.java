@@ -14,19 +14,17 @@ import javax.swing.ScrollPaneConstants;
 
 import fr.unice.polytech.devint.dcheckor.controllers.CheckController;
 
-public class ResultsView extends CheckView {
+public class GenerateView extends CheckView {
 
 	private JLabel resultsContent;
 	private String result;
 	
-	private JButton nextButton;
-	
-	public ResultsView(CheckController cc) {
+	public GenerateView(CheckController cc) {
 		super(cc);
 		
 		this.setLayout(new BorderLayout());
 		
-		JLabel title = new JLabel("Check Results");
+		JLabel title = new JLabel("Generate Results");
 		this.add(title, BorderLayout.NORTH);
 		
 		this.resultsContent = new JLabel("Results");
@@ -55,8 +53,8 @@ public class ResultsView extends CheckView {
 			
 		});
 		buttons.add(cancelButton);
-*/		
-		nextButton = new JButton("Genérer la version Zip du CD");
+		
+		JButton nextButton = new JButton("Next");
 		nextButton.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent arg0) {
@@ -65,9 +63,8 @@ public class ResultsView extends CheckView {
 			}
 			
 		});
-		nextButton.setEnabled(false);
 		buttons.add(nextButton);
-
+*/
 		
 		JButton finishButton = new JButton("Quitter");
 		finishButton.addActionListener(new ActionListener() {
@@ -85,9 +82,6 @@ public class ResultsView extends CheckView {
 	public void setResult(String result) {
 		this.result = result;
 		this.resultsContent.setText(this.result);
-		if(this.result.contains("generateGood")) {
-			this.nextButton.setEnabled(true);
-		}
 	}
 
 /*
@@ -101,11 +95,11 @@ public class ResultsView extends CheckView {
 				this.getController().cancel();
 			}
 	}
-*/
+
 	public void nextStep() {
 		this.getController().nextStep();
 	}
-
+*/
 	public void finishStep() {
 		this.getController().finishStep();
 	}
