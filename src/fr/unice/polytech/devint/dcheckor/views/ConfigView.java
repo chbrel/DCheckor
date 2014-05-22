@@ -100,7 +100,11 @@ public class ConfigView extends CheckView {
 	
 	public void nextStep() {
 		this.getController().setCDYear(Integer.parseInt(this.cdYearInfo.getText()));
-		this.getController().setCDFolder(this.gamesFolderInfo.getText());
+		String gameFolder = this.gamesFolderInfo.getText();
+		if(gameFolder.endsWith("/") || gameFolder.endsWith("\\")) {
+			gameFolder = gameFolder.substring(0, gameFolder.length()-1);
+		}
+		this.getController().setCDFolder(gameFolder);
 		
 		this.getController().nextStep();
 	}
